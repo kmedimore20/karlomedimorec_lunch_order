@@ -15,6 +15,7 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
+    //Create new order and return id of order
     @PostMapping("/order")
     public ResponseEntity<Order> createOrder(@RequestBody Order order){
         try {
@@ -25,6 +26,7 @@ public class OrderController {
         }
     }
 
+    //Update order based on id
     @PutMapping("/order/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable("id") long id, @RequestBody Order order){
         Optional<Order> orderData = orderRepository.findById(id);
