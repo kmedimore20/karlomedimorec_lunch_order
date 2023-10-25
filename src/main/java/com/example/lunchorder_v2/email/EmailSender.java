@@ -88,14 +88,16 @@ public class EmailSender {
 
         //Getting the last order
         Optional<Order> orderData;
-        String orderString;
+        String orderString = new String();
         for (long id = 1; ; id++){
             orderData = orderRepository.findById(id);
-            if (!orderData.isPresent()){
+            if (orderData.isEmpty()){
                 --id;
                 orderData = orderRepository.findById(id);
-                Order _orderData = orderData.get();
-                orderString = _orderData.getMenuItems();
+                if (orderData.isPresent()) {
+                    Order _orderData = orderData.get();
+                    orderString = _orderData.getMenuItems();
+                }
                 break;
             }
         }
@@ -119,14 +121,14 @@ public class EmailSender {
         //Storing the meal names based on mealId
         Optional<Menu> menuData;
         String[] menuArray = new String[orderLongArray.length];
-        String test = new String();
         int menuArrayCounter = 0;
         for (int i = 0; i < menuArray.length; i++){
             menuData = menuRepository.findById(orderLongArray[i]);
-            Menu _menuData = menuData.get();
-            menuArray[menuArrayCounter] = _menuData.getMealName();
-            test = _menuData.getMealName();
-            menuArrayCounter++;
+            if (menuData.isPresent()) {
+                Menu _menuData = menuData.get();
+                menuArray[menuArrayCounter] = _menuData.getMealName();
+                menuArrayCounter++;
+            }
         }
 
         //Accumulating all the orders in one string
