@@ -20,7 +20,7 @@ public class MenuController {
     @GetMapping("/daily/menu")
     public ResponseEntity<List<Menu>> getMenu(){
         try {
-            List<Menu> menu = new ArrayList<Menu>();
+            List<Menu> menu = new ArrayList<>();
 
             menuRepository.findAll().forEach(menu::add);
 
