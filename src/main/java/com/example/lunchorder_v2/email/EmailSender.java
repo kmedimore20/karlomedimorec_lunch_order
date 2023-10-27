@@ -52,6 +52,7 @@ public class EmailSender {
     private String smtpPort;
 
     //Sending the email, scheduled for 10:30 AM
+    //For email to be sent format of the mealId must be correct
     @Scheduled(cron = "0 30 10 * * *")
     public void sendEmail(){
 

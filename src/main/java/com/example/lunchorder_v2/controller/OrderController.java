@@ -16,6 +16,7 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     //Create new order and return id of order
+    //Format of menuItems needs to be quantity x mealId; example: 2x3; 1x5;
     @PostMapping("/order")
     public ResponseEntity<Order> createOrder(@RequestBody Order order){
         try {
